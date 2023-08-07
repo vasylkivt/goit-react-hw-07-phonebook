@@ -12,12 +12,7 @@ import {
 } from 'components';
 import { toastOptions } from 'styles';
 import { fetchContacts } from 'redux/operations';
-import {
-  selectError,
-  selectFilterValue,
-  selectLoading,
-  selectContacts,
-} from 'redux/selectors';
+import { selectError, selectLoading, selectContacts } from 'redux/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();

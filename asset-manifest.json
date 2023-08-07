@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-homework-template/static/css/main.7cda0caf.css",
+    "main.js": "/react-homework-template/static/js/main.36363f5d.js",
+    "static/media/wallpaperflare.com_wallpaper.webp": "/react-homework-template/static/media/wallpaperflare.com_wallpaper.92d844f872fa7b8b827c.webp",
+    "index.html": "/react-homework-template/index.html",
+    "main.7cda0caf.css.map": "/react-homework-template/static/css/main.7cda0caf.css.map",
+    "main.36363f5d.js.map": "/react-homework-template/static/js/main.36363f5d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7cda0caf.css",
+    "static/js/main.36363f5d.js"
+  ]
+}

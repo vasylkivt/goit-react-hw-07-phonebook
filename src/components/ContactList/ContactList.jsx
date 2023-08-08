@@ -30,19 +30,21 @@ export const ContactList = () => {
 
       {!loading && !isContactEmpty && isVisibleContactsEmpty && (
         <Notification>
-          There are no contacts with this name here...
+          There are no contacts here with that name… 🧐 enter a new name ✍️ .
         </Notification>
       )}
 
       {!error && !loading && isContactEmpty && (
-        <Notification>There are no any contacts ...</Notification>
+        <Notification $margin="auto">
+          No contacts...🥲. Add your first contact ☎️ .
+        </Notification>
       )}
 
       {loading && (
-        <Notification $position={'absolute'}>Loading...</Notification>
+        <Notification $position={'absolute'}>Loading... 🕐</Notification>
       )}
 
-      {error && <Notification>{error}</Notification>}
+      {error && <Notification>{error}... 😢😢😢</Notification>}
     </ListWrap>
   );
 };

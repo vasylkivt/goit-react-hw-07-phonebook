@@ -48,6 +48,7 @@ export const Input = styled(Field)`
   &:focus ~ label,
   &:valid ~ label {
     top: -5px;
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;
 

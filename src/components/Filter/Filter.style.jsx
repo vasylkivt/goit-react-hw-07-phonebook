@@ -5,7 +5,8 @@ import { DebounceInput } from 'react-debounce-input';
 export const InputWrap = styled.div`
   position: sticky;
   top: 0;
-  margin: 30px 0;
+  margin-bottom: 30px;
+  margin-top: 60px;
   width: 310px;
   border-bottom: 2px solid #fff;
 `;
@@ -33,6 +34,7 @@ export const Input = styled(DebounceInput)`
   &:focus ~ label,
   &:valid ~ label {
     top: -5px;
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;
 

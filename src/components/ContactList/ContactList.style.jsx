@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ListWrap = styled.div`
-  width: 440px;
-  height: 450px;
+  width: 400px;
+  height: 550px;
   padding: 20px;
   overflow: auto;
 

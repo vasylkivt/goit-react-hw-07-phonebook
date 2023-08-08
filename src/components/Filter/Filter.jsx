@@ -13,7 +13,6 @@ export function Filter() {
     <InputWrap>
       <SearchIcon />
       <Input
-        minLength={2}
         debounceTimeout={300}
         value={value}
         onChange={onChange}

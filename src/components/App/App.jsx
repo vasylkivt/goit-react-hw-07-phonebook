@@ -12,13 +12,10 @@ import {
 } from 'components';
 import { toastOptions } from 'styles';
 import { fetchContacts } from 'redux/operations';
-import { selectError, selectLoading, selectContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -29,15 +26,7 @@ export const App = () => {
       <Section>
         <Container>
           <ContactForm />
-          {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-          <ContactList>
-            {contacts.length === 0 ? (
-              <Notification>There are no any contacts ... </Notification>
-            ) : (
-              <Filter />
-            )}
-          </ContactList>
+          <ContactList />
         </Container>
       </Section>
       <Toaster toastOptions={toastOptions} />

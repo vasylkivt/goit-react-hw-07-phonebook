@@ -17,6 +17,7 @@ export const ListWrap = styled.div`
   align-items: center;
 `;
 export const List = styled.ul`
+  overflow: auto;
   display: flex;
   width: 100%;
   gap: 10px;

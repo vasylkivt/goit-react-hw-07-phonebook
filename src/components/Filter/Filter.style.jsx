@@ -3,11 +3,11 @@ import { BsSearch } from 'react-icons/bs';
 import { DebounceInput } from 'react-debounce-input';
 
 export const InputWrap = styled.div`
-  position: relative;
+  position: sticky;
+  top: 0;
   margin: 30px 0;
   width: 310px;
   border-bottom: 2px solid #fff;
-  position: sticky;
 `;
 export const InputLabel = styled.label`
   position: absolute;

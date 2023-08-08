@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  padding-top: 20px;
-  padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  max-width: 1440px;
+
+  margin: 0 auto;
+  padding: 20px;
 `;

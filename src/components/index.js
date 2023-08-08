@@ -2,7 +2,6 @@ export * from 'components/App/App';
 export * from 'components/Header/Header.style';
 
 export * from 'components/Section/Section.style';
-export * from 'components/Container/Container.style';
 export * from 'components/ContactList/ContactList';
 export * from 'components/ContactItem/ContactItem';
 export * from 'components/ContactForm/ContactForm';

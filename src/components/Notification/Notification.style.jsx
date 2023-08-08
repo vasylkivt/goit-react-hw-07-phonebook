@@ -7,5 +7,5 @@ export const Notification = styled.p`
   font-size: 20px;
 
   text-align: ${({ $textAlign }) => (!$textAlign ? 'center' : $textAlign)};
-  margin: ${({ $margin }) => (!$margin ? 'auto' : $margin)};
+  margin: 0 auto;
 `;

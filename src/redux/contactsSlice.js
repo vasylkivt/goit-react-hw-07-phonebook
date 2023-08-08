@@ -14,6 +14,7 @@ const contactsSlice = createSlice({
     [fetchContacts.fulfilled](state, action) {
       state.items = action.payload;
       state.loading = false;
+      state.error = null;
     },
     [fetchContacts.rejected](state, action) {
       state.loading = false;
@@ -28,6 +29,7 @@ const contactsSlice = createSlice({
     [addContact.fulfilled](state, action) {
       state.items.push(action.payload);
       state.loading = false;
+      state.error = null;
     },
     [addContact.rejected](state, action) {
       state.loading = false;
@@ -42,6 +44,7 @@ const contactsSlice = createSlice({
     [deleteContact.fulfilled](state, action) {
       state.items = state.items.filter(item => item.id !== action.payload.id);
       state.loading = false;
+      state.error = null;
     },
     [deleteContact.rejected](state, action) {
       state.loading = false;

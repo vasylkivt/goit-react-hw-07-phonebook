@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import bg from '../images/wallpaperflare.com_wallpaper.webp';
+import bg from '../images/bg.webp';
 
 export const GlobalStyle = createGlobalStyle`
 html {

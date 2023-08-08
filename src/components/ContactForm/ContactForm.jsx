@@ -1,5 +1,11 @@
 import { Formik } from 'formik';
+import { useRef } from 'react';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
+
 import {
+  ErrorsMessageInput,
   Form,
   Input,
   InputLabel,
@@ -8,12 +14,18 @@ import {
   TelephoneIcon,
 } from './ContactForm.style';
 import { Button } from 'components';
-import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
-
-import { toast } from 'react-hot-toast';
 import { selectContacts } from 'redux/selectors';
-import { useRef } from 'react';
+
+const ContactFormScheme = Yup.object().shape({
+  name: Yup.string()
+    .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
+    .max(40),
+  phone: Yup.string().matches(
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+    'Phone number is not valid'
+  ),
+});
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -34,10 +46,7 @@ export const ContactForm = () => {
       toast.error(`Number "${formData.phone}" is already in contacts. `);
       return;
     }
-
-    toast.success(`${formData.name} added to your contact list.`);
-    dispatch(addContact({ ...formData }));
-
+    dispatch(addContact(formData));
     action.resetForm();
     inputNameRef.current.focus();
   };
@@ -50,37 +59,38 @@ export const ContactForm = () => {
           phone: '',
         }}
         onSubmit={onSubmit}
+        validationSchema={ContactFormScheme}
       >
-        <Form>
-          <InputWrap>
-            <PersonIcon />
-            <Input
-              innerRef={el => {
-                inputNameRef.current = el;
-              }}
-              autoComplete="off"
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-            <InputLabel>Name</InputLabel>
-          </InputWrap>
-          <InputWrap>
-            <TelephoneIcon />
-            <Input
-              autoComplete="off"
-              type="tel"
-              name="phone"
-              pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-            <InputLabel>Number</InputLabel>
-          </InputWrap>
-          <Button type="submit">Add contact</Button>
-        </Form>
+        {({ errors, touched }) => (
+          <Form>
+            <InputWrap>
+              <PersonIcon />
+              <Input
+                innerRef={el => {
+                  inputNameRef.current = el;
+                }}
+                autoComplete="off"
+                type="text"
+                name="name"
+                required
+              />
+              <InputLabel>Contact name</InputLabel>
+              {errors.name && touched.name && (
+                <ErrorsMessageInput>{errors.name}</ErrorsMessageInput>
+              )}
+            </InputWrap>
+            <InputWrap>
+              <TelephoneIcon />
+              <Input autoComplete="off" type="tel" name="phone" required />
+              <InputLabel>Phone number</InputLabel>
+              {errors.phone && touched.phone && (
+                <ErrorsMessageInput>{errors.phone}</ErrorsMessageInput>
+              )}
+            </InputWrap>
+
+            <Button type="submit">Add contact</Button>
+          </Form>
+        )}
       </Formik>
     </>
   );

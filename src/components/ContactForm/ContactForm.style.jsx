@@ -41,7 +41,7 @@ export const Input = styled(Field)`
   background: transparent;
   border: none;
   outline: none;
-  font-size: 1em;
+
   padding: 0 35px 0 5px;
   color: #fff;
 
@@ -49,6 +49,14 @@ export const Input = styled(Field)`
   &:valid ~ label {
     top: -5px;
   }
+`;
+
+export const ErrorsMessageInput = styled.div`
+  position: absolute;
+  bottom: -25px;
+
+  right: 10px;
+  color: ${({ theme: { colors } }) => colors.red};
 `;
 
 export const PersonIcon = styled(BsPerson)`

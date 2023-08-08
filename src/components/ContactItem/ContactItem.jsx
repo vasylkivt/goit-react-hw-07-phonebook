@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineDelete } from 'react-icons/ai';
 
 import { ButtonDel, Item, Text, TextWrap } from './ContactItem.style';
 import { deleteContact } from 'redux/operations';
+import { selectLoading } from 'redux/selectors';
 
 export const ContactItem = ({ contact: { id, name, phone } }) => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectLoading);
 
   const handlerDeleteBtn = () => {
-    dispatch(deleteContact(id));
-    toast.success(`${name} deleted from your contacts list.`);
+    dispatch(deleteContact({ id, name }));
   };
 
   return (
@@ -21,7 +21,11 @@ export const ContactItem = ({ contact: { id, name, phone } }) => {
           <Text>{name}</Text>
           <Text>{phone}</Text>
         </TextWrap>
-        <ButtonDel onClick={handlerDeleteBtn} type="button">
+        <ButtonDel
+          disabled={loading && 'disabled'}
+          onClick={handlerDeleteBtn}
+          type="button"
+        >
           <AiOutlineDelete />
         </ButtonDel>
       </Item>

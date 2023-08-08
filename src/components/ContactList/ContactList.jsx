@@ -20,32 +20,28 @@ export const ContactList = () => {
 
   return (
     <ListWrap>
-      {loading && (
-        <Notification $position={'absolute'} $margin={'0 auto'}>
-          Loading...
+      {!isContactEmpty && <Filter />}
+
+      <List>
+        {visibleContacts.map(contact => (
+          <ContactItem contact={contact} key={contact.id} />
+        ))}
+      </List>
+
+      {!loading && !isContactEmpty && isVisibleContactsEmpty && (
+        <Notification>
+          There are no contacts with this name here...
         </Notification>
-      )}{' '}
-      <>
-        {!isContactEmpty && <Filter />}
+      )}
 
-        <List>
-          {visibleContacts.map(contact => (
-            <ContactItem contact={contact} key={contact.id} />
-          ))}
-        </List>
+      {!error && !loading && isContactEmpty && (
+        <Notification>There are no any contacts ...</Notification>
+      )}
 
-        {!loading && !isContactEmpty && isVisibleContactsEmpty && (
-          <Notification $margin={'0 auto'}>
-            There are no contacts with this name here...
-          </Notification>
-        )}
+      {loading && (
+        <Notification $position={'absolute'}>Loading...</Notification>
+      )}
 
-        {!error && !loading && isContactEmpty && (
-          <Notification $margin={'0 auto'}>
-            There are no any contacts ...
-          </Notification>
-        )}
-      </>
       {error && <Notification>{error}</Notification>}
     </ListWrap>
   );
